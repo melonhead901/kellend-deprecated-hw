@@ -1,0 +1,15 @@
+# Kellen Donohue
+# 09-23-11
+# CSE 303 - HW 1A - Problem 3
+# Describe how to print rhubarb to standard out using the given commands
+
+mkdir rhubarb - Makes a rhubarb directory
+cd rhubarb - Navigate into directory
+alias rhubarb='echo rhubarb >rhubarb' - Sets up an alias
+
+1) rhubarb
+   !! - This prints the text entered on the previous line and its output. This prints only rhubarb because rhubarb is an alias (see above) which generates no output. It also creates a rhubarb file/ 
+2) cat rhubarb - This prints the contents of the file rhubarb to stdout
+3) ls - This print the contents of the current directory, which contains only rhubarb to stdout
+4) grep rhubarb rhubarb - This returns all the lines in the file rhubarb which contain rhubarb the search text rhubarb to std out
+5) echo rhubarb - This print rhubarb to stdout

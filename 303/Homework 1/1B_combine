@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Kellen Donohue
+# 1-19-2009
+# CSE 303 HW 1B
+# Problem 2 -- Create a bash script to combine two or more arguments
+
+if [[ $# -lt 2 ]]
+then
+ echo $0 needs at least 2 arguments >>/dev/stderr
+ exit 1
+fi
+
+if [[ -a "$1" ]]
+ then
+ echo error: "$1" already exists
+ exit 2
+fi
+
+errFile="$1"
+shift
+
+while [[ $# -gt 0 ]]
+do
+  cat "$1" 2>> ${errFile}
+ shift
+done

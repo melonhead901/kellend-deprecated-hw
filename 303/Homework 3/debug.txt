@@ -1,0 +1,53 @@
+Script started on Wed 04 Feb 2009 01:14:58 PM PST
+[?1034h[kellend@gregkh ~]$ gdb gasp
+[?1034hGNU gdb Fedora (6.8-23.fc9)
+Copyright (C) 2008 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "i386-redhat-linux-gnu"...
+(gdb) break main
+Breakpoint 1 at 0x8048628: file gasp.c, line 23.
+(gdb) break 61
+Breakpoint 2 at 0x804877e: file gasp.c, line 61.
+(gdb) run h test
+Starting program: /homes/iws/kellend/gasp h test
+
+Breakpoint 1, main (argc=3, argv=0xbf92bdb4) at gasp.c:23
+23		if(argc < 3)
+Missing separate debuginfos, use: debuginfo-install glibc.i686
+(gdb) print argv[1]
+$1 = 0xbf92c614 "h"
+(gdb) continue
+Continuing.
+
+Breakpoint 2, main (argc=3, argv=0xbf92bdb4) at gasp.c:62
+62			if(!f)
+(gdb) bt
+#0  main (argc=3, argv=0xbf92bdb4) at gasp.c:62
+(gdb) list
+57		for(i=numOptions + 2; i < argc; i++)
+58		{
+59			char* filename = argv[i];
+60			FILE* f = fopen(filename, "r");
+61			// If the file does not exist print an error message, otherwise process it
+62			if(!f)
+63			{
+64				fprintf(stderr, "File %s unopenable.\n", filename);
+65			}
+66			else
+(gdb) print filename
+$2 = 0xbf92c616 "test"
+(gdb) print f
+$3 = (FILE *) 0x804a200
+(gdb) continue
+Continuing.
+test Hello There
+
+Program exited normally.
+(gdb) quit
+[kellend@gregkh ~]$ exit
+exit
+
+Script done on Wed 04 Feb 2009 01:17:20 PM PST
