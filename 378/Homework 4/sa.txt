@@ -1,0 +1,16 @@
+0A	M	0
+0B	M	0
+0A	M	0
+1A	M	0
+1A	H	0
+1B	M	0
+0B	M	0
+1A	M	0
+1B	M	1
+0A	M	1
+0B	M	0
+1A	M	0
+1B	M	1
+0A	M	0
+0B	M	1
+0A	H	0
