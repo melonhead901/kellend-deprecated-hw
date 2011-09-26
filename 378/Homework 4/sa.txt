@@ -1,3 +1,8 @@
+Kellen Donohue
+12-10-10
+UW CSE 378 - Fall 10
+HW # 4 - Set-Associative Cache
+
 0A	M	0
 0B	M	0
 0A	M	0
