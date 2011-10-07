@@ -1,0 +1,43 @@
+BYACC/Java + JFlex Ratml demo
+=============================
+CSE 322: YaccZilla
+
+CSE 322
+Sample File for Lex/Yacc assignment.
+
+This file is NOT a thorough test of all the features you should be implementing,
+but it's a start. This is text in the body; it should be left justified, not
+indented, not capitalized, spindled, folded or mutilated.
+
+Here's a break,
+which should format slightly differently from a < P > aragraph
+
+Although "official" html ignores unrecognized tags, in ratml they can simply be
+printed: <FOONLY> boo </FOONLY> < A href="/"> < Img border=-0 vspace=+5
+src="nameplate.gif"> </A> . Ditto for recognized tags with "parameters," like <
+UL font=arial>; just print it, don't indent, & don't expect closing < /UL>.
+
+Don't forget that you're supposed to be ignoring ratml comments. And note that
+the preceeding sentence contains TWO comments, not one long one, which makes the
+lex pattern slightly tricky... Your lexer should eat comments; no reason to
+bother the parser.
+
+Here's a list:
+  * This is item one of a list
+  * This is item two. Lists should be indented four spaces, with each item
+    marked by a "*" two spaces left of four-space margin. Lists may contain
+    nested lists, like this:
+      * Hi, I'm item one of an inner list.
+      * Me two.
+      * Item 3, inner.
+  * Item 3, outer list.
+This is outside both lists; should be back to no indent.
+
+
+Final suggestions: although I do NOT intend to be picky about grading, it
+certainly will be simplified if "diff" reveals few or no differences between the
+output of your program versus mine on this test file. And speaking of grading,
+please be sure to include your name as a comment in your code, document any ways
+in which you deviated from the assigment (enhancements, etc.), and if these
+features aren't revealed on this test file, please include a short test file of
+your own.
