@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Kellen Donohue
+# 1-14-2009
+# CSE303 HW 1B
+# Problem 3 -- Log to the first file given as an argument the time and date,
+# plus the WC of any files given as the remaining arguments
+
+if [[ $# -lt 2 ]]
+then
+ echo $0: needs at least two arguments >/dev/stderr
+ exit 1
+fi
+
+date >>$1
+
+file=$1
+shift
+
+wc -l $@ >>$file
+
+# Extra Credit Starts here
+
+if [[ $# -lt 2 ]]
+then
+echo `grep . -c $1` total >>$file
+fi

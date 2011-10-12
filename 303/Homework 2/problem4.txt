@@ -1,0 +1,9 @@
+# Kellen Donohue
+# CSE 303 HW 2
+# Problem 4
+# 1-25-09
+
+
+1) The file sets paramaters for the gnuplot program, specifically the labels for x and y axis, the range for the x axis, the outpout file. The last line gives the command for gnuplot to execute.
+
+2) I saw no correlation between site rank and index page size. The data revealed no does not coordinate with my original prediction that that popular sites must have very small index pages. 

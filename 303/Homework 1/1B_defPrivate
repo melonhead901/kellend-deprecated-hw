@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Kellen Donohue
+# 1-19-2009
+# CSE 303 HW 1B
+# Problem 1
+
+# Create a bash alias private such that when you run private foo, the entire 
+# subtree of the file-system has its permissions changed as follows:
+# • The user’s permissions are unchanged
+# • All group and world permissions are set to no access of any sort
+
+alias private='chmod -R go-rwx'
