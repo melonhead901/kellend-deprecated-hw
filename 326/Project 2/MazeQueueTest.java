@@ -33,7 +33,7 @@ public class MazeQueueTest {
 		for (int i = 0; i < 100; i++)
 			q.enqueue(i);
 		for (int i = 0; i < 100; i++)
-			assertEquals(i, q.dequeue());
+			assertEquals((int)i, (int)q.dequeue());
 	}
 
 	/**
@@ -45,11 +45,11 @@ public class MazeQueueTest {
 		for (int i = 0; i < 20; i++)
 			q.enqueue(i);
 		for (int i = 0; i < 20; i++)
-			assertEquals(i, q.dequeue());
+			assertEquals((int)i, (int)q.dequeue());
 		for (int i = 0; i < 10; i++)
 			q.enqueue(i);
 		for (int i = 0; i < 10; i++)
-			assertEquals(i, q.dequeue());
+			assertEquals((int)i, (int)q.dequeue());
 	}
 
 	/**
@@ -61,11 +61,11 @@ public class MazeQueueTest {
 		for (int i = 0; i < 10; i++)
 			q.enqueue(i);
 		for (int i = 0; i < 5; i++)
-			assertEquals(i, q.dequeue());
+			assertEquals((int)i, (int)q.dequeue());
 		for (int i = 10; i < 20; i++)
 			q.enqueue(i);
 		for (int i = 5; i < 20; i++)
-			assertEquals(i, q.dequeue());
+			assertEquals((int)i, (int)q.dequeue());
 	}
 
 	// peek tests
@@ -78,7 +78,7 @@ public class MazeQueueTest {
 		for (int i = 0; i < 100; i++)
 			q.enqueue(i);
 		for (int i = 0; i < 100; i++) {
-			assertEquals(i, q.peek());
+			assertEquals((int)i, (int)q.peek());
 			q.dequeue();
 		}
 	}
@@ -92,13 +92,13 @@ public class MazeQueueTest {
 		for (int i = 0; i < 20; i++)
 			q.enqueue(i);
 		for (int i = 0; i < 20; i++) {
-			assertEquals(i, q.peek());
+			assertEquals((int)i, (int)q.peek());
 			q.dequeue();
 		}
 		for (int i = 0; i < 10; i++)
 			q.enqueue(i);
 		for (int i = 0; i < 10; i++) {
-			assertEquals(i, q.peek());
+			assertEquals((int)i, (int)q.peek());
 			q.dequeue();
 		}
 	}
