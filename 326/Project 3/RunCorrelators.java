@@ -13,7 +13,6 @@
  * 
  */
 public class RunCorrelators {
-
 	/**
 	 * @param args
 	 */
@@ -44,7 +43,5 @@ public class RunCorrelators {
 				System.out.println();
 			}
 		}
-
 	}
-
 }
