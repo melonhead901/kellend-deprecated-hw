@@ -40,7 +40,7 @@ public abstract class PriorityQueueTest {
 	@Test
 	public void testInsert1Delete(){
 		pq.insert(10);
-		assertEquals(pq.deleteMin(), 10);
+		assertEquals((int)pq.deleteMin(), 10);
 	}
 	
 	/**
@@ -49,7 +49,7 @@ public abstract class PriorityQueueTest {
 	@Test
 	public void testInsert1Find(){
 		pq.insert(10);
-		assertEquals(pq.findMin(), 10);
+		assertEquals((int)pq.findMin(), 10);
 	}
 	
 	/**
@@ -61,7 +61,7 @@ public abstract class PriorityQueueTest {
 			pq.insert(i);
 		}
 		for (int i = 1; i < 101; i++){
-			assertEquals(pq.deleteMin(), i);
+			assertEquals((int)pq.deleteMin(), i);
 		}
 	}
 	
@@ -74,7 +74,7 @@ public abstract class PriorityQueueTest {
 			pq.insert(i);
 		}
 		for (int i = 1; i < 101; i++){
-			assertEquals(pq.findMin(), i);
+			assertEquals((int)pq.findMin(), i);
 			pq.deleteMin();
 		}
 	}
@@ -88,7 +88,7 @@ public abstract class PriorityQueueTest {
 			pq.insert(i);
 		}
 		for (int i = 1; i < 101; i++){
-			assertEquals(pq.deleteMin(), i);
+			assertEquals((int)pq.deleteMin(), i);
 		}
 	}
 	
@@ -101,7 +101,7 @@ public abstract class PriorityQueueTest {
 			pq.insert(i);
 		}
 		for (int i = 1; i < 101; i++) {
-			assertEquals(pq.findMin(), i);
+			assertEquals((int)pq.findMin(), i);
 			pq.deleteMin();
 		}
 	}
@@ -119,7 +119,7 @@ public abstract class PriorityQueueTest {
 		}
 		
 		for (int i : sorted){
-			assertEquals(pq.deleteMin(), i);
+			assertEquals((int)pq.deleteMin(), i);
 		}
 	}
 	
@@ -136,7 +136,7 @@ public abstract class PriorityQueueTest {
 		}
 		
 		for (int i : sorted){
-			assertEquals(pq.findMin(), i);
+			assertEquals((int)pq.findMin(), i);
 			pq.deleteMin();
 		}
 	}
