@@ -1,0 +1,45 @@
+We tested the basic operations of each data structure. We added and removed, in separate tests, both one and multiple items, verifying the correct item was on the top the the structure each time. We also tested that each method that threw exceptions did so. Additionally, we tested the constructor and makeEmpty functions, on both empty and non-empty stacks, to ensure that they created empty stuctures, and the isEmpty function to verify these.
+
+In short, we tested each public function of each data structure with a variety of input where applicable, to ensure that it matched the specifications of the interface.
+
+Testing MazeQueue (MazeQueueTest):
+	Test the most fundamental property of the queue ADT - that elements enqueued into the queue dequeue in the order that they were enqueued (FIFO)
+		Test simple cases - enqueue data,  check that it dequeues properly
+		Test harder cases - mix enqueues and dequeues
+	Test the functionality of peek (that peek returns the next element to be dequeued)
+	Test that isEmpty returns true if and only if the queue is empty
+		Test cases - check that newly created queue is empty
+				   - check that a queue that has had data enqueued is not empty
+				   - check that a queue that has had data enqueued and then all of that data dequeued is empty
+				   - check that a queue that has had data enqueued and then some of that data dequeued is not empty
+	Test that dequeue and peek throw NoSuchElementExceptions when the queue is empty
+		Test cases - check that a newly created queue throws an exception
+				   - check that a queue that has had data enqueued and then all of that data dequeued throws an exception
+				   - check that a queue that has had data enqueued and then all of that data dequeued multiple times throws an exception
+		There should be no need to check that these exceptions aren't thrown when they shouldn't be, the enqueue/dequeue testing should handle that
+	Test that makeEmpty empties the queue
+		Test cases - check that makeEmpty called on a newly created queue results in an empty queue
+				   - check that makeEmpty called on a queue that has data enqueued results in an empty queue
+				   - check that makeEmpty called on a queue that has data enqueued and then dequeued results in an empty queue
+
+Testing MazeStack (MazeStackTest):
+	Test the most fundamental property of the stack ADT - that elements pushed into the stack pop in the reverse order that they were push (FILO)
+		Test simple cases - push data,  check that it pops properly
+		Test harder cases - mix pushes and pops
+	Test the functionality of top (that top returns the next element to be popped)
+	Test that isEmpty returns true if and only if the stack is empty
+		Test cases - check that newly created stack is empty
+				   - check that a stack that has had data pushed is not empty
+				   - check that a stack that has had data pushed and then all of that data popped is empty
+				   - check that a stack that has had data pushed and then some of that data popped is not empty
+	Test that pop and top throw NoSuchElementExceptions when the stack is empty
+		Test cases - check that a stack that has had data pushed and then all of that data popped throws an exception
+				   - check that a stack that has had data pushed and then all of that data popped, followed by another pop operations throws an exception
+	Test that makeEmpty empties the stack
+		Test cases - check that makeEmpty called on a newly created stack results in an empty stack
+				   - check that makeEmpty called on a stack that has data pushed results in an empty stack
+				   - check that makeEmpty called on a stack that has data pushed and then popped results in an empty stack
+	Test that a stackResises properly
+		Test case  - check that a stack that has more data pushed on it than its default initial capacity holds the correct data
+
+The heaps were tested in a similar manner.
