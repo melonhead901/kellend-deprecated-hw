@@ -1,0 +1,413 @@
+   0  $accept : page $end
+
+   1  page : BHTML html EHTML
+
+   2  html : BHEAD head EHEAD BBODY body EBODY
+
+   3  head : BTITLE words ETITLE
+
+   4  body : body listHead
+   5       | bodyB
+
+   6  bodyB : bodyB p
+   7        | bodyC
+
+   8  bodyC : bodyC br
+   9        | bodyD
+
+  10  bodyD : bodyD h1Head
+  11        | bodyE
+
+  12  bodyE : bodyE olistHead
+  13        | words
+
+  14  h1Head : BH1 words EH1
+
+  15  p : P
+
+  16  br : BR
+
+  17  olistHead : BOL list EOL
+
+  18  listHead : BUL list EUL
+
+  19  list : LI body list
+  20       |
+
+  21  words : body TEXT
+  22        |
+
+state 0
+	$accept : . page $end  (0)
+
+	BHTML  shift 1
+	.  error
+
+	page  goto 2
+
+
+state 1
+	page : BHTML . html EHTML  (1)
+
+	BHEAD  shift 3
+	.  error
+
+	html  goto 4
+
+
+state 2
+	$accept : page . $end  (0)
+
+	$end  accept
+
+
+state 3
+	html : BHEAD . head EHEAD BBODY body EBODY  (2)
+
+	BTITLE  shift 5
+	.  error
+
+	head  goto 6
+
+
+state 4
+	page : BHTML html . EHTML  (1)
+
+	EHTML  shift 7
+	.  error
+
+
+state 5
+	head : BTITLE . words ETITLE  (3)
+	words : .  (22)
+
+	.  reduce 22
+
+	body  goto 8
+	bodyB  goto 9
+	bodyC  goto 10
+	words  goto 11
+	bodyD  goto 12
+	bodyE  goto 13
+
+
+state 6
+	html : BHEAD head . EHEAD BBODY body EBODY  (2)
+
+	EHEAD  shift 14
+	.  error
+
+
+state 7
+	page : BHTML html EHTML .  (1)
+
+	.  reduce 1
+
+
+state 8
+	body : body . listHead  (4)
+	words : body . TEXT  (21)
+
+	BUL  shift 15
+	TEXT  shift 16
+	.  error
+
+	listHead  goto 17
+
+
+state 9
+	body : bodyB .  (5)
+	bodyB : bodyB . p  (6)
+
+	P  shift 18
+	BUL  reduce 5
+	EBODY  reduce 5
+	EUL  reduce 5
+	EOL  reduce 5
+	LI  reduce 5
+	TEXT  reduce 5
+
+	p  goto 19
+
+
+state 10
+	bodyB : bodyC .  (7)
+	bodyC : bodyC . br  (8)
+
+	BR  shift 20
+	BUL  reduce 7
+	EBODY  reduce 7
+	EUL  reduce 7
+	EOL  reduce 7
+	P  reduce 7
+	LI  reduce 7
+	TEXT  reduce 7
+
+	br  goto 21
+
+
+state 11
+	head : BTITLE words . ETITLE  (3)
+	bodyE : words .  (13)
+
+	ETITLE  shift 22
+	BUL  reduce 13
+	BH1  reduce 13
+	BOL  reduce 13
+	P  reduce 13
+	BR  reduce 13
+	TEXT  reduce 13
+
+
+state 12
+	bodyC : bodyD .  (9)
+	bodyD : bodyD . h1Head  (10)
+
+	BH1  shift 23
+	BUL  reduce 9
+	EBODY  reduce 9
+	EUL  reduce 9
+	EOL  reduce 9
+	P  reduce 9
+	BR  reduce 9
+	LI  reduce 9
+	TEXT  reduce 9
+
+	h1Head  goto 24
+
+
+state 13
+	bodyD : bodyE .  (11)
+	bodyE : bodyE . olistHead  (12)
+
+	BOL  shift 25
+	BUL  reduce 11
+	BH1  reduce 11
+	EBODY  reduce 11
+	EUL  reduce 11
+	EOL  reduce 11
+	P  reduce 11
+	BR  reduce 11
+	LI  reduce 11
+	TEXT  reduce 11
+
+	olistHead  goto 26
+
+
+state 14
+	html : BHEAD head EHEAD . BBODY body EBODY  (2)
+
+	BBODY  shift 27
+	.  error
+
+
+state 15
+	listHead : BUL . list EUL  (18)
+	list : .  (20)
+
+	LI  shift 28
+	EUL  reduce 20
+
+	list  goto 29
+
+
+state 16
+	words : body TEXT .  (21)
+
+	.  reduce 21
+
+
+state 17
+	body : body listHead .  (4)
+
+	.  reduce 4
+
+
+state 18
+	p : P .  (15)
+
+	.  reduce 15
+
+
+state 19
+	bodyB : bodyB p .  (6)
+
+	.  reduce 6
+
+
+state 20
+	br : BR .  (16)
+
+	.  reduce 16
+
+
+state 21
+	bodyC : bodyC br .  (8)
+
+	.  reduce 8
+
+
+state 22
+	head : BTITLE words ETITLE .  (3)
+
+	.  reduce 3
+
+
+state 23
+	h1Head : BH1 . words EH1  (14)
+	words : .  (22)
+
+	.  reduce 22
+
+	body  goto 8
+	bodyB  goto 9
+	bodyC  goto 10
+	words  goto 30
+	bodyD  goto 12
+	bodyE  goto 13
+
+
+state 24
+	bodyD : bodyD h1Head .  (10)
+
+	.  reduce 10
+
+
+state 25
+	olistHead : BOL . list EOL  (17)
+	list : .  (20)
+
+	LI  shift 28
+	EOL  reduce 20
+
+	list  goto 31
+
+
+state 26
+	bodyE : bodyE olistHead .  (12)
+
+	.  reduce 12
+
+
+state 27
+	html : BHEAD head EHEAD BBODY . body EBODY  (2)
+	words : .  (22)
+
+	.  reduce 22
+
+	body  goto 32
+	bodyB  goto 9
+	bodyC  goto 10
+	words  goto 33
+	bodyD  goto 12
+	bodyE  goto 13
+
+
+state 28
+	list : LI . body list  (19)
+	words : .  (22)
+
+	.  reduce 22
+
+	body  goto 34
+	bodyB  goto 9
+	bodyC  goto 10
+	words  goto 33
+	bodyD  goto 12
+	bodyE  goto 13
+
+
+state 29
+	listHead : BUL list . EUL  (18)
+
+	EUL  shift 35
+	.  error
+
+
+state 30
+	bodyE : words .  (13)
+	h1Head : BH1 words . EH1  (14)
+
+	EH1  shift 36
+	BUL  reduce 13
+	BH1  reduce 13
+	BOL  reduce 13
+	P  reduce 13
+	BR  reduce 13
+	TEXT  reduce 13
+
+
+state 31
+	olistHead : BOL list . EOL  (17)
+
+	EOL  shift 37
+	.  error
+
+
+state 32
+	html : BHEAD head EHEAD BBODY body . EBODY  (2)
+	body : body . listHead  (4)
+	words : body . TEXT  (21)
+
+	BUL  shift 15
+	EBODY  shift 38
+	TEXT  shift 16
+	.  error
+
+	listHead  goto 17
+
+
+state 33
+	bodyE : words .  (13)
+
+	.  reduce 13
+
+
+state 34
+	body : body . listHead  (4)
+	list : LI body . list  (19)
+	words : body . TEXT  (21)
+	list : .  (20)
+
+	BUL  shift 15
+	LI  shift 28
+	TEXT  shift 16
+	EUL  reduce 20
+	EOL  reduce 20
+
+	list  goto 39
+	listHead  goto 17
+
+
+state 35
+	listHead : BUL list EUL .  (18)
+
+	.  reduce 18
+
+
+state 36
+	h1Head : BH1 words EH1 .  (14)
+
+	.  reduce 14
+
+
+state 37
+	olistHead : BOL list EOL .  (17)
+
+	.  reduce 17
+
+
+state 38
+	html : BHEAD head EHEAD BBODY body EBODY .  (2)
+
+	.  reduce 2
+
+
+state 39
+	list : LI body list .  (19)
+
+	.  reduce 19
+
+
+20 terminals, 16 nonterminals
+23 grammar rules, 40 states

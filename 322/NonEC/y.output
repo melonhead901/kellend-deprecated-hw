@@ -1,0 +1,289 @@
+   0  $accept : page $end
+
+   1  page : BHTML html EHTML
+
+   2  html : BHEAD head EHEAD BBODY body EBODY
+
+   3  head : BTITLE words ETITLE
+
+   4  body : body listHead
+   5       | bodyB
+
+   6  bodyB : bodyB p
+   7        | bodyC
+
+   8  bodyC : bodyC br
+   9        | words
+
+  10  p : P
+
+  11  br : BR
+
+  12  listHead : BUL list EUL
+
+  13  list : LI body list
+  14       |
+
+  15  words : body TEXT
+  16        |
+
+state 0
+	$accept : . page $end  (0)
+
+	BHTML  shift 1
+	.  error
+
+	page  goto 2
+
+
+state 1
+	page : BHTML . html EHTML  (1)
+
+	BHEAD  shift 3
+	.  error
+
+	html  goto 4
+
+
+state 2
+	$accept : page . $end  (0)
+
+	$end  accept
+
+
+state 3
+	html : BHEAD . head EHEAD BBODY body EBODY  (2)
+
+	BTITLE  shift 5
+	.  error
+
+	head  goto 6
+
+
+state 4
+	page : BHTML html . EHTML  (1)
+
+	EHTML  shift 7
+	.  error
+
+
+state 5
+	head : BTITLE . words ETITLE  (3)
+	words : .  (16)
+
+	.  reduce 16
+
+	body  goto 8
+	bodyB  goto 9
+	bodyC  goto 10
+	words  goto 11
+
+
+state 6
+	html : BHEAD head . EHEAD BBODY body EBODY  (2)
+
+	EHEAD  shift 12
+	.  error
+
+
+state 7
+	page : BHTML html EHTML .  (1)
+
+	.  reduce 1
+
+
+state 8
+	body : body . listHead  (4)
+	words : body . TEXT  (15)
+
+	BUL  shift 13
+	TEXT  shift 14
+	.  error
+
+	listHead  goto 15
+
+
+state 9
+	body : bodyB .  (5)
+	bodyB : bodyB . p  (6)
+
+	P  shift 16
+	BUL  reduce 5
+	EBODY  reduce 5
+	EUL  reduce 5
+	LI  reduce 5
+	TEXT  reduce 5
+
+	p  goto 17
+
+
+state 10
+	bodyB : bodyC .  (7)
+	bodyC : bodyC . br  (8)
+
+	BR  shift 18
+	BUL  reduce 7
+	EBODY  reduce 7
+	EUL  reduce 7
+	P  reduce 7
+	LI  reduce 7
+	TEXT  reduce 7
+
+	br  goto 19
+
+
+state 11
+	head : BTITLE words . ETITLE  (3)
+	bodyC : words .  (9)
+
+	ETITLE  shift 20
+	BUL  reduce 9
+	P  reduce 9
+	BR  reduce 9
+	TEXT  reduce 9
+
+
+state 12
+	html : BHEAD head EHEAD . BBODY body EBODY  (2)
+
+	BBODY  shift 21
+	.  error
+
+
+state 13
+	listHead : BUL . list EUL  (12)
+	list : .  (14)
+
+	LI  shift 22
+	EUL  reduce 14
+
+	list  goto 23
+
+
+state 14
+	words : body TEXT .  (15)
+
+	.  reduce 15
+
+
+state 15
+	body : body listHead .  (4)
+
+	.  reduce 4
+
+
+state 16
+	p : P .  (10)
+
+	.  reduce 10
+
+
+state 17
+	bodyB : bodyB p .  (6)
+
+	.  reduce 6
+
+
+state 18
+	br : BR .  (11)
+
+	.  reduce 11
+
+
+state 19
+	bodyC : bodyC br .  (8)
+
+	.  reduce 8
+
+
+state 20
+	head : BTITLE words ETITLE .  (3)
+
+	.  reduce 3
+
+
+state 21
+	html : BHEAD head EHEAD BBODY . body EBODY  (2)
+	words : .  (16)
+
+	.  reduce 16
+
+	body  goto 24
+	bodyB  goto 9
+	bodyC  goto 10
+	words  goto 25
+
+
+state 22
+	list : LI . body list  (13)
+	words : .  (16)
+
+	.  reduce 16
+
+	body  goto 26
+	bodyB  goto 9
+	bodyC  goto 10
+	words  goto 25
+
+
+state 23
+	listHead : BUL list . EUL  (12)
+
+	EUL  shift 27
+	.  error
+
+
+state 24
+	html : BHEAD head EHEAD BBODY body . EBODY  (2)
+	body : body . listHead  (4)
+	words : body . TEXT  (15)
+
+	BUL  shift 13
+	EBODY  shift 28
+	TEXT  shift 14
+	.  error
+
+	listHead  goto 15
+
+
+state 25
+	bodyC : words .  (9)
+
+	.  reduce 9
+
+
+state 26
+	body : body . listHead  (4)
+	list : LI body . list  (13)
+	words : body . TEXT  (15)
+	list : .  (14)
+
+	BUL  shift 13
+	LI  shift 22
+	TEXT  shift 14
+	EUL  reduce 14
+
+	list  goto 29
+	listHead  goto 15
+
+
+state 27
+	listHead : BUL list EUL .  (12)
+
+	.  reduce 12
+
+
+state 28
+	html : BHEAD head EHEAD BBODY body EBODY .  (2)
+
+	.  reduce 2
+
+
+state 29
+	list : LI body list .  (13)
+
+	.  reduce 13
+
+
+16 terminals, 12 nonterminals
+17 grammar rules, 30 states

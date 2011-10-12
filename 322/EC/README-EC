@@ -1,0 +1,12 @@
+Kellen Donohue
+CSE 322 - HW #8
+03-11-10
+Extra Credit
+
+I added the extra credit that ignored invalid tags. See mytest1.html
+
+I also allowed case insensitive comparison. See mytest2.html
+
+I also added a new simple tag H1. It puts 3 stars before and after its contents and is allowed only in the body. It cannot be nested. See mytest3.html
+
+I also implemented OL. It's rather limited due to my lack of experience with C. I will attempt to define what I would do if I knew more C. Right now it just stores the values to put in an array. These should be replaced with some form of a call on itoa() or other function to convert integers to strings. Right now you cannot nest LI with OL, or even OL within OL properly. This should be easily fixable. When you enter the case statement for processing ul_k or ol_k store the current va of ol_loc in a temporary variable. Then set it to 0 for ul_k or 1 for ol_k. Before the break statement overwrite ol_loc with the temproary value you stored earlier. This ensure that each list gets the proper formatting. See mytest4.html
