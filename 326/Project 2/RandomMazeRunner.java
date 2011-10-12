@@ -58,7 +58,7 @@ public class RandomMazeRunner implements MazeRunner {
    * @param maze the maze to solve.
    * @param writer the PrintWriter on which to output the solution.
    */
-  public void solveMaze(Maze maze, PrintWriter writer) {
+  public void solveMaze(Maze maze, PrintWriter writer, long updateInterval) {
     int cellsVisited;
     MazeCell curCell;
 

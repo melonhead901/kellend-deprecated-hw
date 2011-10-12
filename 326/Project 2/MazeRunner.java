@@ -13,5 +13,5 @@ public interface MazeRunner {
    * @param writer The PrintWriter on which to output the maze solution.
    * @param updateInterval The interval to wait between steps.
    */
-  public void solveMaze(Maze maze, PrintWriter writer);
+  public void solveMaze(Maze maze, PrintWriter writer, long updateInterval);
 }

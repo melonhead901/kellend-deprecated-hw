@@ -46,7 +46,7 @@ public abstract class GenericMazeRunner implements MazeRunner {
 	}
 	
 	@Override
-	public void solveMaze(Maze maze, PrintWriter writer) {
+	public void solveMaze(Maze maze, PrintWriter writer, long updateInterval) {
 		
 		this.donut = maze.getDonut();
 		
@@ -85,7 +85,16 @@ public abstract class GenericMazeRunner implements MazeRunner {
 				// Mark this cell as visited
 				m.setState(MazeCell.CellState.VISITED);
 			}
+			
+			if (updateInterval != 0) {
+				try {
+					wait(updateInterval);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
 		}
+
 		printNoSolutionFound(writer);
 	}
 	
