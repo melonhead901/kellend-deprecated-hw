@@ -1,0 +1,62 @@
+3 Trials on Attu
+
+inputs: hamlet, the-new-atlantis, war_and_peace, war_and_peace_x9, sorted_dictionary, random_dictionary
+Compare: count.sh, count.pl, Word Count - frequency [-b -a -s -h]
+
+time java WordCount -frequency texts/...
+	hamlet.txt
+		-b  0.800, 0.816, 0.820
+		-a  1.876, 1.892, 1.996
+		-s  1.016, 0.956, 0.964
+		-h  0.968, 1.040, 0.976
+		-jt 0.988, 1.084, 1.068
+		-jh 0.924, 0.940, 0.936
+		count.sh 0.584, 0.588, 0.572
+		count.pl 0.352, 0.0376, 0.352
+	the-new-atlantis.txt	
+		-b  0.716, 0.696, 0.688
+		-a  1.553, 1.328, 1.600
+		-s  0.956, 0.876, 0.828
+		-h  0.996, 0.908, 0.996
+		-jt 0.788, 0.956, 0.944
+		-jh 0.736, 1.256, 0.848
+		count.sh 0.280, 0.292, 0.284
+		count.pl 0.160, 0.168, 0.156
+	war_and_peace.txt
+		-b  2.456, 2.432, 2.420
+		-a  6.964, 7.336, 6.980
+		-s  3.148, 3.080, 3.104
+		-h  2.868, 2.960, 2.912
+		-jt 3.112, 2.992, 3.196
+		-jh 2.608, 2.892, 2.708
+		count.sh 10.209, 05.048, 04.972
+		count.pl 02.544, 02.440, 02.436
+	war_and_peace_x9.txt
+		-b  08.545, 10.705, 10.337
+		-a  14.773, 14.605, 14.969
+		-s  12.449, 11.993, 11.957
+		-h  08.389, 08.913, 08.597
+		-jt 13.125, 13.265, 13.009
+		-jh 10.553, 10.909, 10.805
+		count.sh 44.347, 47.679, 47.127
+		count.pl 20.925, 19.973, 18.949
+
+inputs: hamlet + atlantis, war_and_peace + random_dictionary, war_and_peace_x9 + random dictionary
+Coorelator [-b -a -s -h]
+
+time java Correlator texts/... texts/...
+	hamlet.txt, the-new-atlantis.txt
+		-b 0.852, 0.732, 0.780
+		-a 2.220, 1.840, 1.920
+		-s 1.228, 1.204, 1.068
+		-h 1.008, 0.988, 0.980
+		-jt 1.304, 1.128, 1.144
+		-jh 1.256, 1.476, 1.616
+	war_and_peace_x9.txt, war_and_peace_x9.txt
+		-b 11.877, 12.633, 12.025
+		-a 20.161, 20.997, 21.301
+		-s 19.849, 19.685, 19.853
+		-h 12.093, 11.773, 11.845
+		-jt 17.049, 16.465, 15.889
+		-jh 11.881, 11.609, 11.809
+
