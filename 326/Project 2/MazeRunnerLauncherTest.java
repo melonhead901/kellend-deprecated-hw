@@ -246,7 +246,79 @@ public class MazeRunnerLauncherTest {
 					args, true));
 		}
 
-	}	/**
+	}
+	
+
+	/**
+	 * Tests whether the A* skew heap can solve a large maze
+	 */
+	@Test
+	public void AStarSkewLarge() {
+
+		String search = MazeRunnerLauncher.PTR_ARG;
+		String testMaze = largeMaze;
+
+		String args[] = buildAStarTest(search, testMaze);
+		assertEquals(MazeRunnerLauncher.SUCCESS, MazeRunnerLauncher.main(args,
+				true));
+
+	}
+	
+
+	/**
+	 * Tests whether the A* skew heap can solve a small maze
+	 */
+	@Test
+	public void AStarSkewSmall() {
+
+		String search = MazeRunnerLauncher.PTR_ARG;
+		String testMaze = largeMaze;
+
+		String args[] = buildAStarTest(search, testMaze);
+		assertEquals(MazeRunnerLauncher.SUCCESS, MazeRunnerLauncher.main(args,
+				true));
+
+	}
+	
+	/**
+	 * Tests whether the A* d heaps can solve a variety of mazes
+	 */
+	@Test
+	public void AStarDHeapAll() {
+		
+		// Test large maze first
+		String testMaze = largeMaze;
+		int dHeapSizes[] = { 1, 5, 8, 13, 64 };
+		for(int i =0; i < dHeapSizes.length; i++){
+			String args[] = buildAStarTest(dHeapSizes[i], testMaze);
+			assertEquals(MazeRunnerLauncher.SUCCESS, MazeRunnerLauncher.main(args,
+					true));			
+		}		
+		
+		// Then test small maze
+		testMaze = smallMaze;
+		for(int i =0; i < dHeapSizes.length; i++){
+			String args[] = buildAStarTest(dHeapSizes[i], testMaze);
+			assertEquals(MazeRunnerLauncher.SUCCESS, MazeRunnerLauncher.main(args,
+					true));			
+		}
+	}
+
+	/**
+	 * Tests whether the visualizer run correctly
+	 */
+	@Test
+	public void testVisualizer() {
+		String search = MazeRunnerLauncher.DFS_ARG;
+		String testMaze = largeMaze;
+		boolean visualizer = true;
+
+		String args[] = buildTest(search, testMaze, visualizer);
+		assertEquals(MazeRunnerLauncher.SUCCESS, MazeRunnerLauncher.main(args,
+				true));
+	}
+
+	/**
 	 * Generates an arg[] for test string, with visualizer off
 	 * 
 	 * @param search
@@ -274,6 +346,62 @@ public class MazeRunnerLauncherTest {
 		args[2] = mazesBaseDir + testMaze + mazesExt;
 		return args;
 	}
+	
+
+	/**
+	 * Generates an args string for an A* search test, with no visualizer
+	 * @param search The search to use
+	 * @param testMaze The testMaze to ues
+	 */
+	private String[] buildAStarTest(String search, String testMaze){
+		String[] args = new String[3]; 
+		args[0] = MazeRunnerLauncher.ASTAR_ARG;
+		args[1] = search;
+		args[2] = mazesBaseDir + testMaze + mazesExt;
+		return args;
+	}
+	
+
+	/**
+	 * Generates an args string for a d-heap A* search test, with no visualizer
+	 * @param search The search to use
+	 * @param testMaze The testMaze to ues
+	 */
+	private String[] buildAStarTest(int branchingFactor, String testMaze){
+		String[] args = new String[4]; 
+		args[0] = MazeRunnerLauncher.ASTAR_ARG;
+		args[1] = MazeRunnerLauncher.D_ARG;
+		args[2] = String.valueOf(branchingFactor);
+		args[3] = mazesBaseDir + testMaze + mazesExt;
+		return args;
+	}
+	
+	/**
+	 * Generates an arg[] for test string, with visualizer off
+	 * 
+	 * @param search
+	 *            The search argument to use
+	 * @param testMaze
+	 *            The testMaze to use
+	 * @return The arg[] array with the given choices
+	 */
+	private String[] buildTest(String search, String testMaze,
+			boolean useVisualizer) {
+		String[] baseArgs = buildTest(search, testMaze);
+		int pauseInterval = 20;
+		if (useVisualizer) {
+			String[] args = new String[5];
+			args[0] = baseArgs[0];
+			args[1] = MazeRunnerLauncher.VISUALIZER_ARG;
+			args[2] = MazeRunnerLauncher.PAUSE_INTERVAL_ARG;
+			args[3] = String.valueOf(pauseInterval);
+			args[4] = baseArgs[1];
+			return args;
+		} else {
+			return baseArgs;
+		}
+	}
+	
 	/**
 	 * Build a d heap arg string
 	 * 
